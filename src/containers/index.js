@@ -1,9 +1,9 @@
-// import Lobby from './Lobby'
+import ClassLobby from './ClassLobby'
 import SignIn from './SignIn'
 // import SignUp from './SignUp'
 
 export {
-  // Lobby,
+  ClassLobby,
   SignIn,
   // SignUp,
 }

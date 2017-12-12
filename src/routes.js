@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import {
-  // Lobby,
+  ClassLobby,
   SignIn,
   // SignUp
 } from './containers'
@@ -12,10 +12,10 @@ export default class Routes extends Component {
     return (
       <div>
         <Route path="/sign-in" component={SignIn} />
+        <Route exact path="/" component={ClassLobby} />
       </div>
     )
   }
 }
 
 // <Route path="/sign-up" component={SignUp} />
-// <Route exact path="/" component={Lobby} />
