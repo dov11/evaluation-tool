@@ -14,7 +14,7 @@ class ClassLobby extends PureComponent {
   }
 
   goToBatch = batchId => event => {
-		this.props.push(`/batch/${batchId}`)
+		this.props.push(`/batches/${batchId}`)
 	}
 
   renderBatch = (batch, index) => {

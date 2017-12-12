@@ -4,6 +4,7 @@ import { Route } from 'react-router-dom'
 import {
   ClassLobby,
   SignIn,
+  Batch
   // SignUp
 } from './containers'
 
@@ -13,6 +14,7 @@ export default class Routes extends Component {
       <div>
         <Route path="/sign-in" component={SignIn} />
         <Route exact path="/" component={ClassLobby} />
+        <Route path="/batches/:batchId" component={Batch} />
       </div>
     )
   }

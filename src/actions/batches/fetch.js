@@ -19,13 +19,12 @@ export default ()=> {
   }
 }
 
-export const fetchOneGame = (batchId)=> {
+export const fetchOneBatch = (batchId)=> {
   // console.log('fetchOneGame');
   return dispatch => {
     dispatch({type: loading(true).type})
     api.get(`batches/${batchId}`)
     .then(res => {
-				// console.log('FETCHING ONE GAME NOW');
         dispatch({type: FETCH_ONE_BATCH, payload: res.body})
         dispatch({type: loading(false).type})
       })
