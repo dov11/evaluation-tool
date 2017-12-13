@@ -13,7 +13,7 @@ export default (batchId)=> {
     dispatch({type: loading(true).type})
     api.delete(`batches/${batchId}`)
     .then(res => {
-        dispatch({type: DESTROY_BATCH, payload: res.body})
+        dispatch({type: 'DESTROY_BATCH', payload: res.body})
         dispatch({type: loading(false).type})
         dispatch(push('/'))
       })

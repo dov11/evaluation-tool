@@ -12,11 +12,10 @@ export default (newBatch)=> {
     dispatch({type: loading(true).type})
     api.post('batches', newBatch)
     .then(res => {
-      console.log('got res from api')
-        dispatch({type: CREATED_BATCH, payload: res.body})
+        dispatch({type: 'CREATED_BATCH', payload: res.body})
         dispatch({type: loading(false).type})
         const newBatchId = res.body._id
-        dispatch(push(`batch/${newBatchId}`))
+        // dispatch(push(`batch/${newBatchId}`))
       })
       .catch(err => dispatch({type: LOAD_ERROR, payload: err}))
   }

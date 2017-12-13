@@ -12,13 +12,15 @@ import DESTROY_BATCH from '../actions/batches/destroyBatch'
 
 
 export default (state=[], {type, payload} ={}) => {
-  // console.log('>>> REDUCER = CALLED: TYPE: ', type);
+  console.log('>>> REDUCER = CALLED: TYPE: ', type, payload);
   switch(type) {
-    case CREATED_BATCH :
+    case 'CREATED_BATCH' :
       return [{ ...payload}].concat(state)
       // return [...state, {...payload}]
-      case DESTROY_BATCH :
-      return state.filter((batch) => (batch._id !== payload._id))
+      case 'DESTROY_BATCH' :
+      console.log(state)
+      console.log(payload)
+      return state.filter((batch) => (batch._id !== payload))
     // case GAME_UPDATED :
     // return state.map((batch) => {
     //   if (game._id === payload._id) {
