@@ -79,9 +79,7 @@ class StudentEditor extends PureComponent {
       linkToPhoto,
       performanceCodes: []
     }
-console.log(student)
-const batchId = this.props.batchId
-console.log(batchId)
+    const batchId = this.props.batchId
     this.props.createStudent(batchId, student)
   }
 

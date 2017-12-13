@@ -4,6 +4,7 @@ import { fetchOneStudent } from '../../actions/batches/fetchStudent'
 import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import AverageGrade from './AverageGrade'
+import EvaluationForm from './EvaluationForm'
 
 // import FlatButton from 'material-ui/FlatButton';
 
@@ -48,17 +49,23 @@ class Student extends PureComponent {
   render() {
     const { student } = this.props
     if ( !student ) return null
-
     return (
         <div style={styles.root}>
-        <div>
-          <div>{student.firstName + " " + student.lastName}</div>
-          <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
-          {(student.performanceCodes.length>0) && <AverageGrade student={student}/>}
-        </div>
-          <GridList style={styles.gridList} cols={2.2}>
-            {(student.performanceCodes.length>0) && student.performanceCodes.map(this.renderCode)}
-          </GridList>
+          <div>
+            <div>{student.firstName + " " + student.lastName}</div>
+            <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
+            {
+              (student.performanceCodes.length>0) &&
+              <AverageGrade student={student}/>
+            }
+          </div>
+          {
+            (student.performanceCodes.length>0) &&
+            <GridList style={styles.gridList} cols={2.2}>
+              {student.performanceCodes.map(this.renderCode)}
+            </GridList>
+          }
+          <EvaluationForm />
         </div>
     )
   }
