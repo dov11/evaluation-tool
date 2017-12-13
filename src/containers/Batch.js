@@ -5,6 +5,8 @@ import { fetchOneBatch } from '../actions/batches/fetch'
 import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
+import AverageGrade from '../components/batches/AverageGrade'
+import GradeDistribution from '../components/batches/GradeDistribution'
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -42,9 +44,12 @@ class Batch extends PureComponent {
         key={index}
         onClick={this.goToStudent(student._id)}
         title={student.firstName + " " + student.lastName}
-        titlePosition={'top'}
+        titlePosition={'bottom'}
       >
-      <div className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></div>
+      <div className="Grades">
+        Last Grade:<span className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></span>
+      <AverageGrade student={student}/>
+      </div>
       <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
       </GridTile>
     )
@@ -56,6 +61,7 @@ class Batch extends PureComponent {
     return (
       <div className="root">
         <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
+        <GradeDistribution students={batch.students}/>
         <GridList
           cellHeight={180}
           className="StudentGrid"

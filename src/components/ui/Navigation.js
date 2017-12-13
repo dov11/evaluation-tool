@@ -7,8 +7,18 @@ import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import AssesmentIcon from 'material-ui/svg-icons/action/assessment'
 import FlatButton from 'material-ui/FlatButton'
+import RefreshIndicator from 'material-ui/RefreshIndicator'
 
 const TITLE = 'Evaluation-tool'
+const style = {
+  container: {
+    position: 'relative',
+  },
+  refresh: {
+    display: 'inline-block',
+    position: 'relative',
+  },
+};
 
 class Navigation extends PureComponent {
   static propTypes = {
@@ -31,6 +41,7 @@ class Navigation extends PureComponent {
   render() {
     const { signedIn } = this.props
     return (
+      <div>
       <AppBar
         title={TITLE}
         iconElementLeft={
@@ -43,12 +54,22 @@ class Navigation extends PureComponent {
           <FlatButton label="Sign in" onClick={this.signIn} />
         }
       />
+      {this.props.loading && <RefreshIndicator
+      size={100}
+      left={70}
+      top={10}
+      loadingColor="#FF9800"
+      status="loading"
+      style={style.refresh}
+    />}
+    </div>
     )
   }
 }
 
-const mapStateToProps = ({ currentUser }) => ({
-  signedIn: (!!currentUser && !!currentUser._id)
+const mapStateToProps = ({ currentUser, loading }) => ({
+  signedIn: (!!currentUser && !!currentUser._id),
+  loading,
 })
 
 export default connect(mapStateToProps, { push, signOut })(Navigation)
