@@ -71,7 +71,6 @@ class BatchEditor extends PureComponent {
           ref="batchNumber"
           className="title"
           placeholder="BatchNumber"
-          defaultValue={this.state.title}
           onChange={this.updateBatchNumber.bind(this)}
           onKeyDown={this.updateBatchNumber.bind(this)} />
           <DatePicker id="datepicker1"onChange={this.updateStartDate}/>

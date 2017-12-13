@@ -54,10 +54,10 @@ class Student extends PureComponent {
         <div>
           <div>{student.firstName + " " + student.lastName}</div>
           <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
-          <AverageGrade student={student}/>
+          {(student.performanceCodes.length>0) && <AverageGrade student={student}/>}
         </div>
           <GridList style={styles.gridList} cols={2.2}>
-            {student.performanceCodes.map(this.renderCode)}
+            {(student.performanceCodes.length>0) && student.performanceCodes.map(this.renderCode)}
           </GridList>
         </div>
     )

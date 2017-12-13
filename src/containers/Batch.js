@@ -7,6 +7,7 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import AverageGrade from '../components/batches/AverageGrade'
 import GradeDistribution from '../components/batches/GradeDistribution'
+import StudentEditor from '../components/batches/StudentEditor'
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -46,10 +47,11 @@ class Batch extends PureComponent {
         title={student.firstName + " " + student.lastName}
         titlePosition={'bottom'}
       >
+      {(student.performanceCodes.length>0) &&
       <div className="Grades">
         Last Grade:<span className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></span>
       <AverageGrade student={student}/>
-      </div>
+      </div>}
       <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
       </GridTile>
     )
@@ -59,15 +61,18 @@ class Batch extends PureComponent {
     const { batch } = this.props
     if ( !batch ) return null
     return (
-      <div className="root">
-        <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
-        <GradeDistribution students={batch.students}/>
-        <GridList
-          cellHeight={180}
-          className="StudentGrid"
-          >
-            { batch.students.map(this.renderStudent) }
-        </GridList>
+      <div>
+        <div className="root">
+          <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
+          <GradeDistribution students={batch.students}/>
+          <GridList
+            cellHeight={180}
+            className="StudentGrid"
+            >
+              { batch.students.map(this.renderStudent) }
+          </GridList>
+        </div>
+        <StudentEditor batchId={batch._id}/>
       </div>
     )
   }
