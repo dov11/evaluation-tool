@@ -35,6 +35,9 @@ class ClassLobby extends PureComponent {
         key={index}
         onClick={this.goToBatch(batch._id)}
         title={'Batch #' + batch.batchNumber}
+        subtitle={'Duration: '
+           + batch.startDate.slice(0,9).replace(/-/g, '/') + ' --> ' + batch.endDate.slice(0,9).replace(/-/g, '/')
+         }
         titlePosition={'top'}
         >
         <div className="content">{batch.students.length + ' Students'}</div>
