@@ -12,9 +12,10 @@ class GradeDistribution extends PureComponent {
     return this.averageGrades(students).filter(grade=>grade===color).length/students.length
   }
   render() {
-    const redRatio = this.ratio('Red', this.props.students)
-    const greenRatio = this.ratio('Green', this.props.students)
-    const yellowRatio = this.ratio('Yellow', this.props.students)
+    const {students} = this.props
+    const redRatio = students.length>0 ? this.ratio('Red', students) : 0
+    const greenRatio = students.length>0 ? this.ratio('Green', students) : 0
+    const yellowRatio = students.length>0 ? this.ratio('Yellow', students) : 0
     const styleRed = {
       width: 300*redRatio,
       height: 20,
