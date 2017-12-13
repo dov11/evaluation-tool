@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
 // import patchGame from '../actions/batches/patch'
 import { push } from 'react-router-redux'
-// import Paper from 'material-ui/Paper'
+import {GridList, GridTile} from 'material-ui/GridList';
+import Subheader from 'material-ui/Subheader';
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -27,11 +28,23 @@ class Batch extends PureComponent {
     // this.props.connectToSocket()
   }
 
+  goToStudent = studentId => event => {
+		this.props.push(`/batches/${studentId}`)
+	}
+
 
   renderStudent = (student, index) => {
 
     return (
-      <div key={index}>{student.firstName}</div>
+      <GridTile
+        className="gridtile"
+        key={index}
+        onClick={this.goToStudent(student._id)}
+        title={student.firstName + " " + student.lastName}
+        titlePosition={'top'}
+      >
+      <img src={student.linkToPhoto} />
+      </GridTile>
     )
   }
 
@@ -40,10 +53,13 @@ class Batch extends PureComponent {
     if ( !batch ) return null
     return (
       <div className="Batch">
-        <h2>{'Batch #' + batch.batchNumber}</h2>
-        <div className="StudentGrid">
-          { batch.students.map(this.renderStudent) }
-        </div>
+        <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
+        <GridList
+          cellHeight={180}
+          className="StudentGrid"
+          >
+            { batch.students.map(this.renderStudent) }
+        </GridList>
       </div>
     )
   }
