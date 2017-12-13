@@ -43,7 +43,7 @@ export default class ApiClient {
 
   delete(path) {
     return request
-      .post(this.createUrl(path))
+      .delete(this.createUrl(path))
       .set(this.headers())
   }
 
