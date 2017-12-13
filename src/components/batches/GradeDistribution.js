@@ -15,8 +15,6 @@ class GradeDistribution extends PureComponent {
     const redRatio = this.ratio('Red', this.props.students)
     const greenRatio = this.ratio('Green', this.props.students)
     const yellowRatio = this.ratio('Yellow', this.props.students)
-    console.log(greenRatio)
-    console.log(yellowRatio)
     const styleRed = {
       width: 300*redRatio,
       height: 20,
