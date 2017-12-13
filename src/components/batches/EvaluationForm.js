@@ -82,7 +82,7 @@ class EvaluationForm extends PureComponent {
           onChange={this.updateBatchNumber}
         />
 
-        <DatePicker id="datepicker3" onChange={this.setEvaluationDate}/>
+        <DatePicker id="datepicker3" defaultDate={new Date()} onChange={this.setEvaluationDate}/>
 
         <RadioButtonGroup
           name="shipSpeed"
