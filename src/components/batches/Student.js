@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchOneStudent } from '../../actions/batches/fetchStudent'
 import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
+import AverageGrade from './AverageGrade'
 
 // import FlatButton from 'material-ui/FlatButton';
 
@@ -28,7 +29,6 @@ class Student extends PureComponent {
     const { currentUser } = this.props
     const studentId = this.props.match.params.studentId
     const batchId = this.props.match.params.batchId
-    console.log(this.props.match.params)
     if ( currentUser == null ) {
       this.props.push('/sign-in')
     }
@@ -52,8 +52,9 @@ class Student extends PureComponent {
     return (
         <div style={styles.root}>
         <div>
-        <div>{student.firstName + " " + student.lastName}</div>
-        <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
+          <div>{student.firstName + " " + student.lastName}</div>
+          <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
+          <AverageGrade student={student}/>
         </div>
           <GridList style={styles.gridList} cols={2.2}>
             {student.performanceCodes.map(this.renderCode)}
