@@ -7,6 +7,7 @@ import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import AverageGrade from '../components/batches/AverageGrade'
 import GradeDistribution from '../components/batches/GradeDistribution'
+import StudentEditor from '../components/batches/StudentEditor'
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -59,15 +60,18 @@ class Batch extends PureComponent {
     const { batch } = this.props
     if ( !batch ) return null
     return (
-      <div className="root">
-        <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
-        <GradeDistribution students={batch.students}/>
-        <GridList
-          cellHeight={180}
-          className="StudentGrid"
-          >
-            { batch.students.map(this.renderStudent) }
-        </GridList>
+      <div>
+        <div className="root">
+          <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
+          <GradeDistribution students={batch.students}/>
+          <GridList
+            cellHeight={180}
+            className="StudentGrid"
+            >
+              { batch.students.map(this.renderStudent) }
+          </GridList>
+        </div>
+        <StudentEditor />
       </div>
     )
   }
