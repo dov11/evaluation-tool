@@ -9,3 +9,23 @@
   padding: 10px;
   text-align: left;
 }
+
+.root {
+  display: 'flex';
+  flexWrap: 'wrap';
+  justifyContent: 'space-around';
+}
+.gridList {
+  width: 500px;
+  height: 450px;
+  overflowY: 'auto';
+}
+
+.gridtile {
+  border: 2px solid grey;
+}
+
+.content {
+  margin-top: 70px;
+  margin-left: 20px;
+}

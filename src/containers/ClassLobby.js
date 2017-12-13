@@ -4,9 +4,12 @@ import { connect } from 'react-redux'
 import fetchGames from '../actions/batches/fetch'
 // import CreateGameButton from '../components/batches/CreateGameButton'
 import Paper from 'material-ui/Paper'
+import {GridList, GridTile} from 'material-ui/GridList';
 import {List, ListItem} from 'material-ui/List'
+import Subheader from 'material-ui/Subheader';
 import { push } from 'react-router-redux'
 import './ClassLobby.css'
+
 
 class ClassLobby extends PureComponent {
   componentWillMount() {
@@ -19,23 +22,29 @@ class ClassLobby extends PureComponent {
 
   renderBatch = (batch, index) => {
     return (
-      <ListItem
+      <GridTile
+        className="gridtile"
         key={index}
         onClick={this.goToBatch(batch._id)}
-        primaryText={'Batch #' + batch.batchNumber}
-        />
+        title={'Batch #' + batch.batchNumber}
+        titlePosition={'top'}
+        >
+        <div className="content">{batch.students.length + ' Students'}</div>
+        </GridTile>
     )
   }
 
   render() {
     return (
-      <div className="Lobby">
-        <Paper className="paper">
-          <List>
+        <div className="root">
+        <Subheader>Batches</Subheader>
+          <GridList
+          cellHeight={180}
+          className="gridlist"
+          >
             { this.props.batches.map(this.renderBatch)}
-          </List>
-        </Paper>
-      </div>
+          </GridList>
+        </div>
     )
   }
 }
