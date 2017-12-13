@@ -6,7 +6,9 @@ import averageGrade from '../../functions/averagegrade'
 
 class GradeDistribution extends PureComponent {
   averageGrades = students => {
-    return students.map(student=> averageGrade(student.performanceCodes))
+    return students
+    .filter(student=> student.performanceCodes.length>0)
+    .map(student=> averageGrade(student.performanceCodes))
   }
   ratio = (color, students) => {
     return this.averageGrades(students).filter(grade=>grade===color).length/students.length

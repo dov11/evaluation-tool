@@ -17,17 +17,17 @@ export default (state=[], {type, payload} ={}) => {
     case 'CREATED_BATCH' :
       return [{ ...payload}].concat(state)
       // return [...state, {...payload}]
-      case 'DESTROY_BATCH' :
+    case 'DESTROY_BATCH' :
       // console.log(state)
       // console.log(payload)
       return state.filter((batch) => (batch._id !== payload))
-    // case GAME_UPDATED :
-    // return state.map((batch) => {
-    //   if (game._id === payload._id) {
-    //     return { ...payload }
-    //   }
-    //   return game
-		// })
+    case 'UPDATED_BATCH' :
+    return state.map((batch) => {
+      if (batch._id === payload._id) {
+        return { ...payload }
+      }
+      return batch
+		})
 
     case FETCHED_BATCHES :
       return [...payload]

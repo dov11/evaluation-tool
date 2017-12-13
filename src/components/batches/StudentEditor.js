@@ -80,7 +80,9 @@ class StudentEditor extends PureComponent {
       performanceCodes: []
     }
 console.log(student)
-    // this.props.createStudent(student)
+const batchId = this.props.batchId
+console.log(batchId)
+    this.props.createStudent(batchId, student)
   }
 
   render() {
@@ -90,20 +92,20 @@ console.log(student)
           ref="firstName"
           hintText="First Name"
           onChange={this.updateFirstName}
-          onKeyDown={this.updateFirstName} />
+           />
 
         <TextField
           ref="lastName"
           hintText="Last Name"
           onChange={this.updateLastName}
-          onKeyDown={this.updateLastName} />
+           />
           <br />
         <TextField
           ref="linkToPhoto"
           className="title"
           hintText="Link To Photo"
           onChange={this.updateLinkToPhoto}
-          onKeyDown={this.updateLinkToPhoto} />
+          />
 
         <div className="actions">
           <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>

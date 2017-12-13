@@ -47,10 +47,11 @@ class Batch extends PureComponent {
         title={student.firstName + " " + student.lastName}
         titlePosition={'bottom'}
       >
+      {(student.performanceCodes.length>0) &&
       <div className="Grades">
         Last Grade:<span className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></span>
       <AverageGrade student={student}/>
-      </div>
+      </div>}
       <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
       </GridTile>
     )
@@ -71,7 +72,7 @@ class Batch extends PureComponent {
               { batch.students.map(this.renderStudent) }
           </GridList>
         </div>
-        <StudentEditor />
+        <StudentEditor batchId={batch._id}/>
       </div>
     )
   }
