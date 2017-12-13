@@ -43,7 +43,7 @@ class Batch extends PureComponent {
         key={index}
         onClick={this.goToStudent(student._id)}
         title={student.firstName + " " + student.lastName}
-        titlePosition={'top'}
+        titlePosition={'bottom'}
       >
       <div className="Grades">
         Last Grade:<span className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></span>
