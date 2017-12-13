@@ -10,6 +10,7 @@ import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
 import BatchEditor from '../components/batches/BatchEditor'
 import destroyBatch from '../actions/batches/destroyBatch'
+import DeleteIcon from 'material-ui/svg-icons/action/highlight-off'
 import { push } from 'react-router-redux'
 import './ClassLobby.css'
 
@@ -37,10 +38,12 @@ class ClassLobby extends PureComponent {
         titlePosition={'top'}
         >
         <div className="content">{batch.students.length + ' Students'}</div>
-        </GridTile>
-        <button key={"del"+index}
+        <IconButton key={"del"+index}
           onClick={this.deleteBatch(batch._id)}
-          ></button>
+          >
+          <DeleteIcon/>
+        </IconButton>
+        </GridTile>
         </div>
     )
   }

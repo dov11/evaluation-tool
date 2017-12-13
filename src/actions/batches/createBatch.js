@@ -1,7 +1,7 @@
 import ApiClient from '../../api/client'
 import { loading } from '../loading'
 import { LOAD_ERROR } from '../loading'
-import { push } from 'react-router-redux'
+// import { push } from 'react-router-redux'
 
 export const CREATED_BATCH = 'CREATED_BATCH'
 
@@ -14,7 +14,7 @@ export default (newBatch)=> {
     .then(res => {
         dispatch({type: 'CREATED_BATCH', payload: res.body})
         dispatch({type: loading(false).type})
-        const newBatchId = res.body._id
+        // const newBatchId = res.body._id
         // dispatch(push(`batch/${newBatchId}`))
       })
       .catch(err => dispatch({type: LOAD_ERROR, payload: err}))
