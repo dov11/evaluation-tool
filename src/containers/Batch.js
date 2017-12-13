@@ -6,6 +6,7 @@ import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import Subheader from 'material-ui/Subheader';
 import AverageGrade from '../components/batches/AverageGrade'
+import GradeDistribution from '../components/batches/GradeDistribution'
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -60,6 +61,7 @@ class Batch extends PureComponent {
     return (
       <div className="root">
         <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
+        <GradeDistribution students={batch.students}/>
         <GridList
           cellHeight={180}
           className="StudentGrid"

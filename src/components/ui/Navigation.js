@@ -7,9 +7,18 @@ import AppBar from 'material-ui/AppBar'
 import IconButton from 'material-ui/IconButton'
 import AssesmentIcon from 'material-ui/svg-icons/action/assessment'
 import FlatButton from 'material-ui/FlatButton'
-import LinearProgress from 'material-ui/LinearProgress';
+import RefreshIndicator from 'material-ui/RefreshIndicator'
 
 const TITLE = 'Evaluation-tool'
+const style = {
+  container: {
+    position: 'relative',
+  },
+  refresh: {
+    display: 'inline-block',
+    position: 'relative',
+  },
+};
 
 class Navigation extends PureComponent {
   static propTypes = {
@@ -45,7 +54,14 @@ class Navigation extends PureComponent {
           <FlatButton label="Sign in" onClick={this.signIn} />
         }
       />
-      {this.props.loading && <LinearProgress mode="indeterminate" />}
+      {this.props.loading && <RefreshIndicator
+      size={100}
+      left={70}
+      top={10}
+      loadingColor="#FF9800"
+      status="loading"
+      style={style.refresh}
+    />}
     </div>
     )
   }
