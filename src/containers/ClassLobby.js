@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 // import { disconnect } from '../actions/websocket'
 import fetchGames from '../actions/batches/fetch'
 // import CreateGameButton from '../components/batches/CreateGameButton'
-import Paper from 'material-ui/Paper'
+// import Paper from 'material-ui/Paper'
 import {GridList, GridTile} from 'material-ui/GridList';
-import {List, ListItem} from 'material-ui/List'
+// import {List, ListItem} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader';
 import { push } from 'react-router-redux'
 import './ClassLobby.css'

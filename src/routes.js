@@ -8,6 +8,8 @@ import {
   // SignUp
 } from './containers'
 
+import Student from './components/batches/Student'
+
 export default class Routes extends Component {
   render() {
     return (
@@ -15,6 +17,7 @@ export default class Routes extends Component {
         <Route path="/sign-in" component={SignIn} />
         <Route exact path="/" component={ClassLobby} />
         <Route path="/batches/:batchId" component={Batch} />
+        <Route path="/students/:batchId/:studentId" component={Student} />
       </div>
     )
   }

@@ -8,7 +8,7 @@ import Subheader from 'material-ui/Subheader';
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
-// import './Batch.css'
+import './Batch.css'
 
 
 class Batch extends PureComponent {
@@ -29,7 +29,8 @@ class Batch extends PureComponent {
   }
 
   goToStudent = studentId => event => {
-		this.props.push(`/batches/${studentId}`)
+    const batchId = this.props.match.params.batchId
+		this.props.push(`/students/${batchId}/${studentId}`)
 	}
 
 
@@ -43,7 +44,8 @@ class Batch extends PureComponent {
         title={student.firstName + " " + student.lastName}
         titlePosition={'top'}
       >
-      <img src={student.linkToPhoto} />
+      <div className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></div>
+      <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
       </GridTile>
     )
   }
@@ -52,7 +54,7 @@ class Batch extends PureComponent {
     const { batch } = this.props
     if ( !batch ) return null
     return (
-      <div className="Batch">
+      <div className="root">
         <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
         <GridList
           cellHeight={180}
