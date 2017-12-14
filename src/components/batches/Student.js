@@ -6,9 +6,8 @@ import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import AverageGrade from './AverageGrade'
 import EvaluationForm from './EvaluationForm'
-
-// import FlatButton from 'material-ui/FlatButton';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import BackIcon from 'material-ui/svg-icons/navigation/arrow-back'
 import './Student.css'
 
 const styles = {
@@ -42,7 +41,11 @@ class Student extends PureComponent {
     const batchId = this.props.match.params.batchId
     const studentId = this.props.match.params.studentId
 		this.props.push(`/evaluations/${batchId}/${studentId}/${evaluationId}`)
+  }
 
+  goBack = () => event => {
+    const batchId = this.props.match.params.batchId
+    this.props.push(`/batches/${batchId}/`)
   }
 
   renderCode = (code, index) => {
@@ -78,6 +81,7 @@ class Student extends PureComponent {
           }
         </div>
         <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
+        <FloatingActionButton mini={true} onClick={this.goBack()}><BackIcon/></FloatingActionButton>
         </div>
     )
   }
