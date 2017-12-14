@@ -9,6 +9,7 @@ import {
 } from './containers'
 
 import Student from './components/batches/Student'
+import Evaluation from './components/batches/Evaluation'
 
 export default class Routes extends Component {
   render() {
@@ -18,6 +19,7 @@ export default class Routes extends Component {
         <Route exact path="/" component={ClassLobby} />
         <Route path="/batches/:batchId" component={Batch} />
         <Route path="/students/:batchId/:studentId" component={Student} />
+        <Route path="/evaluations/:batchId/:studentId/:evaluationId" component={Evaluation} />
       </div>
     )
   }
