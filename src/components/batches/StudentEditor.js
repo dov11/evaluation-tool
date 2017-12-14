@@ -54,11 +54,12 @@ class StudentEditor extends PureComponent {
 
 
   saveStudent() {
-    const {
+    let {
       firstName,
       lastName,
       linkToPhoto
     } = this.state
+    if (!linkToPhoto) {linkToPhoto="https://vignette.wikia.nocookie.net/scrubs/images/3/31/S6-HQ-Ted.jpg/revision/latest?cb=20141104111733"}
 
     const student = {
       firstName,
