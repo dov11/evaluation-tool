@@ -72,8 +72,26 @@ class EvaluationForm extends PureComponent {
     }
     const batchId =this.props.batchId
     const studentId =this.props.studentId
-    console.log(evaluation, batchId, studentId)
-    this.props.createEvaluation(batchId, studentId, evaluation)
+    this.props.createEvaluation(batchId, studentId, evaluation, null)
+  }
+  saveAndNext() {
+    let {
+      comment,
+      evaluationDate,
+      colorCode
+    } = this.state
+    if (!colorCode) {colorCode='Green'}
+    if (!evaluationDate) {evaluationDate=new Date()}
+    if (!comment) {comment=" "}
+
+    const evaluation = {
+      comment,
+      evaluationDate,
+      colorCode
+    }
+    const batchId =this.props.batchId
+    const studentId =this.props.studentId
+    this.props.createEvaluation(batchId, studentId, evaluation, 'next')
   }
 
   render() {
@@ -112,6 +130,7 @@ class EvaluationForm extends PureComponent {
 
         <div className="actions">
           <button className="primary" onClick={this.saveEvaluation.bind(this)}>Save</button>
+          <button className="primary" onClick={this.saveAndNext.bind(this)}>Save and Next...</button>
         </div>
       </div>
     )

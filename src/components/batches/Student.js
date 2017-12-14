@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneStudent } from '../../actions/batches/fetchStudent'
+import fetchBatches from '../../actions/batches/fetch'
 import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import AverageGrade from './AverageGrade'
@@ -33,7 +34,7 @@ class Student extends PureComponent {
     if ( currentUser == null ) {
       this.props.push('/sign-in')
     }
-
+    this.props.fetchBatches()
     this.props.fetchOneStudent(batchId, studentId)
   }
 
@@ -85,6 +86,7 @@ const mapStateToProps = ({ currentUser, students }, { match }) => {
 
 const mapDispatchtoProps = {
   fetchOneStudent,
+  fetchBatches,
   push,
 }
 

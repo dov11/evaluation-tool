@@ -5,14 +5,12 @@ import {
 export default (state=[], {type, payload} ={}) => {
   switch(type) {
 
-    case FETCH_ONE_STUDENT :
-      // console.log('FETCH_ONE_GAME:', payload );
-      // return [...payload]
-      // @todo: error detection when gameId doesn't exist??
-      if ( state.length < 1 ) {
-        // console.log('fetch one student:', payload);
-        return [{ ...payload }]
-      } else {
+    case 'FETCH_ONE_STUDENT' :
+      const studentIds = state.map(student => student._id)
+      if (studentIds.indexOf(payload._id) < 0) {
+       return [{ ...payload }].concat(state)
+      }
+      else {
         return state.map((student) => {
           if (student._id === payload._id) {
             return { ...payload }
