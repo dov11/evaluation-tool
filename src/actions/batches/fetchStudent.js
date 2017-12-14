@@ -12,7 +12,7 @@ export const fetchOneStudent = (batchId, studentId)=> {
     dispatch({type: loading(true).type})
     api.get(`batches/${batchId}/${studentId}`)
     .then(res => {
-        dispatch({type: FETCH_ONE_STUDENT, payload: res.body})
+        dispatch({type: 'FETCH_ONE_STUDENT', payload: res.body})
         dispatch({type: loading(false).type})
       })
       .catch(err => dispatch({type: LOAD_ERROR, payload: err}))

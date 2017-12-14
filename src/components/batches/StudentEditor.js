@@ -52,19 +52,6 @@ class StudentEditor extends PureComponent {
     })
   }
 
-  // updateStartDate = (event, date) => {
-  //   this.setState({
-  //     lastName: date
-  //   })
-  // }
-  //
-  // updateEndDate = (event, date) => {
-  //   this.setState({
-  //     linkToPhoto: date
-  //   })
-  // }
-
-
 
   saveStudent() {
     const {
@@ -79,9 +66,7 @@ class StudentEditor extends PureComponent {
       linkToPhoto,
       performanceCodes: []
     }
-console.log(student)
-const batchId = this.props.batchId
-console.log(batchId)
+    const batchId = this.props.batchId
     this.props.createStudent(batchId, student)
   }
 

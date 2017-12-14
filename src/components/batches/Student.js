@@ -1,9 +1,11 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneStudent } from '../../actions/batches/fetchStudent'
+import fetchBatches from '../../actions/batches/fetch'
 import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import AverageGrade from './AverageGrade'
+import EvaluationForm from './EvaluationForm'
 
 // import FlatButton from 'material-ui/FlatButton';
 
@@ -32,14 +34,14 @@ class Student extends PureComponent {
     if ( currentUser == null ) {
       this.props.push('/sign-in')
     }
-
+    this.props.fetchBatches()
     this.props.fetchOneStudent(batchId, studentId)
   }
 
   renderCode = (code, index) => {
     return (
       <GridTile key={index}>
-        <div className={"code "+ code.colorCode}></div>
+        <div className={"code "+ code.colorCode}>{new Date(code.evaluationDate).toDateString()}</div>
       </GridTile>
 
     )
@@ -48,17 +50,25 @@ class Student extends PureComponent {
   render() {
     const { student } = this.props
     if ( !student ) return null
-
     return (
         <div style={styles.root}>
-        <div>
-          <div>{student.firstName + " " + student.lastName}</div>
-          <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
-          {(student.performanceCodes.length>0) && <AverageGrade student={student}/>}
-        </div>
-          <GridList style={styles.gridList} cols={2.2}>
-            {(student.performanceCodes.length>0) && student.performanceCodes.map(this.renderCode)}
-          </GridList>
+          <div>
+            <div>{student.firstName + " " + student.lastName}</div>
+            <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
+            {
+              (student.performanceCodes.length>0) &&
+              <AverageGrade student={student}/>
+            }
+          </div>
+          {
+            (student.performanceCodes.length>0) &&
+            <GridList style={styles.gridList} cols={2.2}>
+              {student.performanceCodes
+                .sort((a,b)=> (new Date(a.evaluationDate).getTime())-(new Date(b.evaluationDate).getTime()))
+                .map(this.renderCode)}
+            </GridList>
+          }
+          <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
         </div>
     )
   }
@@ -76,6 +86,7 @@ const mapStateToProps = ({ currentUser, students }, { match }) => {
 
 const mapDispatchtoProps = {
   fetchOneStudent,
+  fetchBatches,
   push,
 }
 

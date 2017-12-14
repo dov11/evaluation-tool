@@ -34,9 +34,9 @@ class GradeDistribution extends PureComponent {
       <div>
         <Subheader>Average Grade Distribution:</Subheader>
         <div className="flex-container">
-          <div className="barRed" style={styleRed}></div>
-          <div className="barYellow" style={styleYellow}>{yellowRatio*100}%</div>
-          <div className="barGreen" style={styleGreen}>{greenRatio*100}%</div>
+          <div className="barRed" style={styleRed}>{(redRatio*100>1) && Math.round(redRatio*100)+'%'}</div>
+          <div className="barYellow" style={styleYellow}>{(yellowRatio*100>1) && Math.round(yellowRatio*100)+'%'}</div>
+          <div className="barGreen" style={styleGreen}>{(greenRatio*100>1) && Math.round(greenRatio*100)+'%'}</div>
         </div>
       </div>
     )
