@@ -52,19 +52,6 @@ class StudentEditor extends PureComponent {
     })
   }
 
-  // updateStartDate = (event, date) => {
-  //   this.setState({
-  //     lastName: date
-  //   })
-  // }
-  //
-  // updateEndDate = (event, date) => {
-  //   this.setState({
-  //     linkToPhoto: date
-  //   })
-  // }
-
-
 
   saveStudent() {
     const {

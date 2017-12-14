@@ -65,7 +65,7 @@ class Student extends PureComponent {
               {student.performanceCodes.map(this.renderCode)}
             </GridList>
           }
-          <EvaluationForm />
+          <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
         </div>
     )
   }

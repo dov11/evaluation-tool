@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react'
 // import toMarkdown from 'to-markdown'
 import { connect } from 'react-redux'
 import DatePicker from 'material-ui/DatePicker'
-import createBatch from '../../actions/batches/createBatch'
+import createEvaluation from '../../actions/batches/createEvaluation'
 import TextField from 'material-ui/TextField'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 // import ActionFavorite from 'material-ui/svg-icons/action/favorite'
@@ -62,14 +62,18 @@ class EvaluationForm extends PureComponent {
       colorCode
     } = this.state
     if (!colorCode) {colorCode='Green'}
+    if (!evaluationDate) {evaluationDate=new Date()}
+    if (!comment) {comment=" "}
 
     const evaluation = {
       comment,
       evaluationDate,
       colorCode
     }
-    console.log(evaluation)
-    // this.props.createBatch(evaluation)
+    const batchId =this.props.batchId
+    const studentId =this.props.studentId
+    console.log(evaluation, batchId, studentId)
+    this.props.createEvaluation(batchId, studentId, evaluation)
   }
 
   render() {
@@ -114,6 +118,6 @@ class EvaluationForm extends PureComponent {
   }
 }
 
-export default connect(null, {createBatch})(EvaluationForm)
+export default connect(null, {createEvaluation})(EvaluationForm)
 
 // min={minimum.comment}
