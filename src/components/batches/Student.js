@@ -51,6 +51,7 @@ class Student extends PureComponent {
     const { student } = this.props
     if ( !student ) return null
     return (
+      <div className="container">
         <div style={styles.root}>
           <div>
             <div>{student.firstName + " " + student.lastName}</div>
@@ -68,7 +69,8 @@ class Student extends PureComponent {
                 .map(this.renderCode)}
             </GridList>
           }
-          <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
+        </div>
+        <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
         </div>
     )
   }

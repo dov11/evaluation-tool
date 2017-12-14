@@ -1,11 +1,8 @@
 import React, { PureComponent } from 'react'
-// import Editor from 'react-medium-editor'
-// import toMarkdown from 'to-markdown'
 import { connect } from 'react-redux'
 import DatePicker from 'material-ui/DatePicker'
 import createBatch from '../../actions/batches/createBatch'
-// import 'medium-editor/dist/css/medium-editor.css'
-// import 'medium-editor/dist/css/themes/default.css'
+import RaisedButton from 'material-ui/RaisedButton'
 // import './BatchEditor.css'
 
 
@@ -73,11 +70,11 @@ class BatchEditor extends PureComponent {
           placeholder="BatchNumber"
           onChange={this.updateBatchNumber.bind(this)}
           onKeyDown={this.updateBatchNumber.bind(this)} />
-          <DatePicker id="datepicker1"onChange={this.updateStartDate}/>
-          <DatePicker id="datepicker2" onChange={this.updateEndDate}/>
+        <DatePicker id="datepicker1" hintText="Start Date" onChange={this.updateStartDate}/>
+          <DatePicker id="datepicker2" hintText="End Date" onChange={this.updateEndDate}/>
 
         <div className="actions">
-          <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
+          <RaisedButton primary={true} onClick={this.saveBatch.bind(this)}>Save</RaisedButton>
         </div>
       </div>
     )

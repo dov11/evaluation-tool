@@ -100,7 +100,9 @@ class Batch extends PureComponent {
           </GridList>
         </div>
         <StudentEditor batchId={batch._id}/>
-        <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
+        <div>
+          Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
+        </div>
       </div>
     )
   }
