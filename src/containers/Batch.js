@@ -8,6 +8,9 @@ import Subheader from 'material-ui/Subheader';
 import AverageGrade from '../components/batches/AverageGrade'
 import GradeDistribution from '../components/batches/GradeDistribution'
 import StudentEditor from '../components/batches/StudentEditor'
+import DeleteIcon from 'material-ui/svg-icons/action/highlight-off'
+import destroyStudent from '../actions/batches/destroyStudent'
+import IconButton from 'material-ui/IconButton';
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -35,6 +38,9 @@ class Batch extends PureComponent {
     const batchId = this.props.match.params.batchId
 		this.props.push(`/students/${batchId}/${studentId}`)
 	}
+  deleteStudent = (studentId) => event => {
+    this.props.destroyStudent(this.props.match.params.batchId, studentId)
+  }
 
 
   renderStudent = (student, index) => {
@@ -45,6 +51,11 @@ class Batch extends PureComponent {
         key={index}
         onClick={this.goToStudent(student._id)}
         title={student.firstName + " " + student.lastName}
+        subtitle={<IconButton key={"del"+index}
+          onClick={this.deleteStudent(student._id)}
+          >
+          <DeleteIcon/>
+        </IconButton>}
         titlePosition={'bottom'}
       >
       {(student.performanceCodes.length>0) &&
@@ -89,6 +100,7 @@ const mapStateToProps = ({ currentUser, batches }, { match }) => {
 
 const mapDispatchtoProps = {
   fetchOneBatch,
+  destroyStudent,
   push,
 }
 
