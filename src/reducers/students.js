@@ -20,6 +20,8 @@ export default (state=[], {type, payload} ={}) => {
           return student
         })
       }
+      case 'UPDATED_STUDENT' :
+      return [{...payload}]
 
 		default :
       return state

@@ -12,7 +12,8 @@ export default (batchId, studentId, evaluation)=> {
     dispatch({type: loading(true).type})
     api.patch(`batches/${batchId}/${studentId}`, evaluation)
     .then(res => {
-        dispatch({type: 'UPDATED_BATCH', payload: res.body})
+        // dispatch({type: 'UPDATED_BATCH', payload: res.body})
+        dispatch({type: 'UPDATED_STUDENT', payload: res.body.students.filter(student=>student._id===studentId)[0]})
         dispatch({type: loading(false).type})
         // const newBatchId = res.body._id
         // dispatch(push(`batch/${newBatchId}`))

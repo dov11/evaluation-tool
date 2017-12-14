@@ -40,7 +40,7 @@ class Student extends PureComponent {
   renderCode = (code, index) => {
     return (
       <GridTile key={index}>
-        <div className={"code "+ code.colorCode}></div>
+        <div className={"code "+ code.colorCode}>{code.evaluationDate}</div>
       </GridTile>
 
     )
@@ -62,7 +62,9 @@ class Student extends PureComponent {
           {
             (student.performanceCodes.length>0) &&
             <GridList style={styles.gridList} cols={2.2}>
-              {student.performanceCodes.map(this.renderCode)}
+              {student.performanceCodes
+                .sort((a,b)=>(new Date(b.evaluationDate).getMilliseconds())-(new Date(a.evaluationDate).getMilliseconds()))
+                .map(this.renderCode)}
             </GridList>
           }
           <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
