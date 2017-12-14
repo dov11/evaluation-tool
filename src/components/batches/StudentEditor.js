@@ -1,12 +1,10 @@
 import React, { PureComponent } from 'react'
-// import Editor from 'react-medium-editor'
-// import toMarkdown from 'to-markdown'
 import { connect } from 'react-redux'
 import createStudent from '../../actions/batches/createStudent'
 import TextField from 'material-ui/TextField'
-// import 'medium-editor/dist/css/medium-editor.css'
-// import 'medium-editor/dist/css/themes/default.css'
-// import './StudentEditor.css'
+import Subheader from 'material-ui/Subheader';
+import RaisedButton from 'material-ui/RaisedButton'
+import './StudentEditor.css'
 
 
 class StudentEditor extends PureComponent {
@@ -25,7 +23,6 @@ class StudentEditor extends PureComponent {
   updateFirstName = (event, newValue) =>{
     if (event.keyCode === 13) {
       event.preventDefault()
-      // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
       firstName: newValue
@@ -35,7 +32,6 @@ class StudentEditor extends PureComponent {
   updateLastName = (event, newValue) => {
     if (event.keyCode === 13) {
       event.preventDefault()
-      // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
       lastName: newValue
@@ -45,7 +41,6 @@ class StudentEditor extends PureComponent {
   updateLinkToPhoto = (event, newValue) => {
     if (event.keyCode === 13) {
       event.preventDefault()
-      // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
       linkToPhoto: newValue
@@ -54,11 +49,12 @@ class StudentEditor extends PureComponent {
 
 
   saveStudent() {
-    const {
+    let {
       firstName,
       lastName,
       linkToPhoto
     } = this.state
+    if (!linkToPhoto) {linkToPhoto="https://vignette.wikia.nocookie.net/scrubs/images/3/31/S6-HQ-Ted.jpg/revision/latest?cb=20141104111733"}
 
     const student = {
       firstName,
@@ -73,6 +69,7 @@ class StudentEditor extends PureComponent {
   render() {
     return (
       <div className="editor">
+        <Subheader>Add Student:</Subheader>
         <TextField
           ref="firstName"
           hintText="First Name"
@@ -93,7 +90,7 @@ class StudentEditor extends PureComponent {
           />
 
         <div className="actions">
-          <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>
+          <RaisedButton primary={true} onClick={this.saveStudent.bind(this)}>Save</RaisedButton>
         </div>
       </div>
     )

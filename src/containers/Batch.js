@@ -8,9 +8,11 @@ import Subheader from 'material-ui/Subheader';
 import AverageGrade from '../components/batches/AverageGrade'
 import GradeDistribution from '../components/batches/GradeDistribution'
 import StudentEditor from '../components/batches/StudentEditor'
-import DeleteIcon from 'material-ui/svg-icons/action/highlight-off'
-import destroyStudent from '../actions/batches/destroyStudent'
 import IconButton from 'material-ui/IconButton';
+import DeleteIcon from 'material-ui/svg-icons/action/highlight-off'
+import FaceIcon from 'material-ui/svg-icons/action/face'
+import destroyStudent from '../actions/batches/destroyStudent'
+import selectStudent from '../functions/selectStudent'
 // import Menu from 'material-ui/Menu'
 // import MenuItem from 'material-ui/MenuItem'
 // import Student from '../components/batches/student'
@@ -41,6 +43,14 @@ class Batch extends PureComponent {
   deleteStudent = (studentId) => event => {
     this.props.destroyStudent(this.props.match.params.batchId, studentId)
   }
+  goToRandomStudent = () => event => {
+    const students = this.props.batch.students
+    const studentId = selectStudent(students)
+
+    const batchId = this.props.match.params.batchId
+    this.props.push(`/students/${batchId}/${studentId}`)
+    console.log(studentId)
+  }
 
 
   renderStudent = (student, index) => {
@@ -52,11 +62,13 @@ class Batch extends PureComponent {
         key={index}
         onClick={this.goToStudent(student._id)}
         title={student.firstName + " " + student.lastName}
-        subtitle={<IconButton key={"del"+index}
+        subtitle={
+          <IconButton key={"del"+index}
           onClick={this.deleteStudent(student._id)}
           >
           <DeleteIcon/>
-        </IconButton>}
+          </IconButton>
+        }
         titlePosition={'bottom'}
       >
       {(student.performanceCodes.length>0) &&
@@ -88,6 +100,9 @@ class Batch extends PureComponent {
           </GridList>
         </div>
         <StudentEditor batchId={batch._id}/>
+        <div>
+          Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
+        </div>
       </div>
     )
   }

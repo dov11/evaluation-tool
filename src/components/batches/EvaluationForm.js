@@ -6,6 +6,7 @@ import DatePicker from 'material-ui/DatePicker'
 import createEvaluation from '../../actions/batches/createEvaluation'
 import TextField from 'material-ui/TextField'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
+import RaisedButton from 'material-ui/RaisedButton'
 // import ActionFavorite from 'material-ui/svg-icons/action/favorite'
 // import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border'
 // import 'medium-editor/dist/css/medium-editor.css'
@@ -100,44 +101,48 @@ class EvaluationForm extends PureComponent {
 
   render() {
     return (
-      <div className="editor">
-        <TextField
-          hintText="Your comment here"
-          multiLine={true}
-          rows={4}
-          onChange={this.updateBatchNumber}
-        />
-
-        <DatePicker
-        id="datepicker3"
-        defaultDate={defaultDate}
-        onChange={this.setEvaluationDate}/>
-
-        <RadioButtonGroup
-          name="shipSpeed"
-          defaultSelected="Green"
-          onChange={this.setColorCode}
-        >
-          <div
-            value="Green"
-            className="greenButton"
-            style={styles.radioButton}
-          ></div>
-          <div
-            value="Yellow"
-            className="yellowButton"
-            style={styles.radioButton}
-          ></div>
-          <RadioButton
-            value="Red"
-            className="redButton"
-            style={styles.radioButton}
+      <div className="form">
+        <div className="flex-container">
+        <div>
+          <TextField
+            hintText="Your comment here"
+            multiLine={true}
+            rows={4}
+            onChange={this.updateBatchNumber}
           />
-        </RadioButtonGroup>
 
+          <DatePicker
+          id="datepicker3"
+          defaultDate={defaultDate}
+          onChange={this.setEvaluationDate}/>
+        </div>
+        <div>
+          <RadioButtonGroup
+            name="shipSpeed"
+            defaultSelected="Green"
+            onChange={this.setColorCode}
+          >
+            <div
+              value="Green"
+              className="greenButton"
+              style={styles.radioButton}
+            ></div>
+            <div
+              value="Yellow"
+              className="yellowButton"
+              style={styles.radioButton}
+            ></div>
+            <RadioButton
+              value="Red"
+              className="redButton"
+              style={styles.radioButton}
+            />
+          </RadioButtonGroup>
+        </div>
+      </div>
         <div className="actions">
-          <button className="primary" onClick={this.saveEvaluation.bind(this)}>Save</button>
-          <button className="primary" onClick={this.saveAndNext.bind(this)}>Save and Next...</button>
+          <RaisedButton onClick={this.saveEvaluation.bind(this)}>Save</RaisedButton>
+          <RaisedButton primary={true} onClick={this.saveAndNext.bind(this)}>Save and Next...</RaisedButton>
         </div>
       </div>
     )
