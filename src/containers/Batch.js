@@ -44,7 +44,8 @@ class Batch extends PureComponent {
 
 
   renderStudent = (student, index) => {
-
+    const lastGrade=student.performanceCodes
+      .sort((a,b)=> (new Date(b.evaluationDate).getTime())-(new Date(a.evaluationDate).getTime()))[0]
     return (
       <GridTile
         className="gridtile"
@@ -60,7 +61,10 @@ class Batch extends PureComponent {
       >
       {(student.performanceCodes.length>0) &&
       <div className="Grades">
-        Last Grade:<span className={"code "+ student.performanceCodes[student.performanceCodes.length-1].colorCode}></span>
+        Last Grade:
+        <span className={"code "+lastGrade.colorCode}>
+          {new Date(lastGrade.evaluationDate).toDateString()}
+        </span>
       <AverageGrade student={student}/>
       </div>}
       <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>

@@ -18,6 +18,9 @@ const styles = {
    height: 50,
   },
 }
+const t = new Date()
+const defaultDate=new Date(t.getFullYear(), t.getMonth(), t.getDate(), 12, 0, 0, 0)
+
 
 class EvaluationForm extends PureComponent {
   constructor(props) {
@@ -43,8 +46,9 @@ class EvaluationForm extends PureComponent {
   }
 
   setEvaluationDate = (event, date) => {
+    let roundDate=new Date(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0, 0)
     this.setState({
-      evaluationDate: date
+      evaluationDate: roundDate
     })
   }
   setColorCode = (event, valueSelected) => {
@@ -62,7 +66,7 @@ class EvaluationForm extends PureComponent {
       colorCode
     } = this.state
     if (!colorCode) {colorCode='Green'}
-    if (!evaluationDate) {evaluationDate=new Date()}
+    if (!evaluationDate) {evaluationDate=defaultDate}
     if (!comment) {comment=" "}
 
     const evaluation = {
@@ -81,7 +85,7 @@ class EvaluationForm extends PureComponent {
       colorCode
     } = this.state
     if (!colorCode) {colorCode='Green'}
-    if (!evaluationDate) {evaluationDate=new Date()}
+    if (!evaluationDate) {evaluationDate=defaultDate}
     if (!comment) {comment=" "}
 
     const evaluation = {
@@ -104,7 +108,10 @@ class EvaluationForm extends PureComponent {
           onChange={this.updateBatchNumber}
         />
 
-        <DatePicker id="datepicker3" defaultDate={new Date()} onChange={this.setEvaluationDate}/>
+        <DatePicker
+        id="datepicker3"
+        defaultDate={defaultDate}
+        onChange={this.setEvaluationDate}/>
 
         <RadioButtonGroup
           name="shipSpeed"

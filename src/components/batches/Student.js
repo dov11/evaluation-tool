@@ -41,7 +41,7 @@ class Student extends PureComponent {
   renderCode = (code, index) => {
     return (
       <GridTile key={index}>
-        <div className={"code "+ code.colorCode}>{code.evaluationDate}</div>
+        <div className={"code "+ code.colorCode}>{new Date(code.evaluationDate).toDateString()}</div>
       </GridTile>
 
     )
@@ -64,7 +64,7 @@ class Student extends PureComponent {
             (student.performanceCodes.length>0) &&
             <GridList style={styles.gridList} cols={2.2}>
               {student.performanceCodes
-                .sort((a,b)=>(new Date(b.evaluationDate).getMilliseconds())-(new Date(a.evaluationDate).getMilliseconds()))
+                .sort((a,b)=> (new Date(a.evaluationDate).getTime())-(new Date(b.evaluationDate).getTime()))
                 .map(this.renderCode)}
             </GridList>
           }
