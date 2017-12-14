@@ -6,9 +6,8 @@ import { push } from 'react-router-redux'
 import {GridList, GridTile} from 'material-ui/GridList';
 import AverageGrade from './AverageGrade'
 import EvaluationForm from './EvaluationForm'
-
-// import FlatButton from 'material-ui/FlatButton';
-
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import BackIcon from 'material-ui/svg-icons/navigation/arrow-back'
 import './Student.css'
 
 const styles = {
@@ -38,10 +37,21 @@ class Student extends PureComponent {
     this.props.fetchOneStudent(batchId, studentId)
   }
 
+  goToEvaluation = evaluationId => event => {
+    const batchId = this.props.match.params.batchId
+    const studentId = this.props.match.params.studentId
+		this.props.push(`/evaluations/${batchId}/${studentId}/${evaluationId}`)
+  }
+
+  goBack = () => event => {
+    const batchId = this.props.match.params.batchId
+    this.props.push(`/batches/${batchId}/`)
+  }
+
   renderCode = (code, index) => {
     return (
       <GridTile key={index}>
-        <div className={"code "+ code.colorCode}>{new Date(code.evaluationDate).toDateString()}</div>
+        <div onClick={this.goToEvaluation(code._id)} className={"code "+ code.colorCode}>{new Date(code.evaluationDate).toDateString()}</div>
       </GridTile>
 
     )
@@ -71,12 +81,16 @@ class Student extends PureComponent {
           }
         </div>
         <EvaluationForm batchId={this.props.match.params.batchId} studentId={student._id}/>
+        <FloatingActionButton mini={true} onClick={this.goBack()}><BackIcon/></FloatingActionButton>
         </div>
     )
   }
 }
 
 const mapStateToProps = ({ currentUser, students }, { match }) => {
+  if ( currentUser == null ) {
+    return null
+  }
   const student = students.filter((student) => (student._id === match.params.studentId))[0]
 
   return {

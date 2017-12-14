@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { fetchOneBatch } from '../actions/batches/fetch'
-// import patchGame from '../actions/batches/patch'
 import { push } from 'react-router-redux'
-import {GridList, GridTile} from 'material-ui/GridList';
-import Subheader from 'material-ui/Subheader';
+import {GridList, GridTile} from 'material-ui/GridList'
+import Subheader from 'material-ui/Subheader'
 import AverageGrade from '../components/batches/AverageGrade'
 import GradeDistribution from '../components/batches/GradeDistribution'
 import StudentEditor from '../components/batches/StudentEditor'
