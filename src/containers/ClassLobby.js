@@ -1,11 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-// import { disconnect } from '../actions/websocket'
 import fetchBatches from '../actions/batches/fetch'
-// import CreateGameButton from '../components/batches/CreateGameButton'
-// import Paper from 'material-ui/Paper'
 import {GridList, GridTile} from 'material-ui/GridList';
-// import {List, ListItem} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
 import BatchEditor from '../components/batches/BatchEditor'
