@@ -31,7 +31,7 @@ class ClassLobby extends PureComponent {
     return (
       <div key={"div" + index}>
       <GridTile
-        className="gridtile"
+        className="gridtileLobby"
         key={index}
         onClick={this.goToBatch(batch._id)}
         title={'Batch #' + batch.batchNumber}
@@ -54,11 +54,11 @@ class ClassLobby extends PureComponent {
   render() {
     return (
       <div>
-        <div className="root">
+        <div className="rootLobby">
         <Subheader>Batches</Subheader>
           <GridList
           cellHeight={180}
-          className="gridlist"
+          className="gridlistLobby"
           >
             { this.props.batches.map(this.renderBatch)}
           </GridList>

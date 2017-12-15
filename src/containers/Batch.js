@@ -66,7 +66,7 @@ class Batch extends PureComponent {
     return (
       <GridTile
         key={"grid"+index}
-        className="gridtile"
+        className="gridtileBatch"
         title={student.firstName + " " + student.lastName}
         titlePosition={'bottom'}>
         <IconButton key={"del"+index}
@@ -102,24 +102,24 @@ class Batch extends PureComponent {
     if ( !batch ) return null
     return (
       <div>
-        <div className="root">
+        <div className="rootBatch">
           <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
           <div className="distribution">
             <GradeDistribution students={batch.students}/>
           </div>
           <GridList
             cellHeight={400}
-            className="gridList"
+            className="gridListBatch"
             >
               { batch.students.map(this.renderStudent) }
-              <StudentEditor batchId={batch._id}/>
-              <div className="distribution">
-                Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
-            </div>
           </GridList>
         </div>
         <div className="student-editor">
+          <StudentEditor batchId={batch._id}/>
         </div>
+        <div className="distribution">
+          Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
+      </div>
       </div>
     )
   }

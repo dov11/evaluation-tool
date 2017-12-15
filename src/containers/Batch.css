@@ -2,32 +2,38 @@
   height: 100%;
   overflowY: 'auto';
 } */
-.root {
+.rootBatch {
   display: 'flex';
-  flexWrap: 'wrap';
+  border: 2px solid black;
+  /* flexWrap: 'wrap'; */
+  align-items: center;
   justifyContent: 'space-around';
   margin: 5px;
   /* margin-bottom: 150px; */
 }
-.gridList {
-  width: 700px;
+.gridListBatch {
+  /* width: 700px; */
+  border: 2px solid black;
   /* height: 650px; */
-  overflowY: 'auto';
+  /* overflowY: 'auto'; */
   margin-bottom: auto;
 }
 
-.gridtile {
-  width: 200px;
+.gridtileBatch {
+  border: 2px solid black;
+  width: 350px;
 }
 
 .student-editor {
   margin: 5px;
+  width: 500px;
   /* margin-top: 20px; */
 }
 
 .distribution {
   border: 1px solid grey;
   margin: 5px;
+  width: 250px;
 }
 
 .code {
