@@ -2,23 +2,38 @@
   height: 100%;
   overflowY: 'auto';
 } */
-.root {
+.rootBatch {
   display: 'flex';
-  flexWrap: 'wrap';
+  border: 2px solid black;
+  /* flexWrap: 'wrap'; */
+  align-items: center;
   justifyContent: 'space-around';
+  margin: 5px;
+  /* margin-bottom: 150px; */
 }
-.gridList {
+.gridListBatch {
+  /* width: 700px; */
+  border: 2px solid black;
+  /* height: 650px; */
+  /* overflowY: 'auto'; */
+  margin-bottom: auto;
+}
+
+.gridtileBatch {
+  border: 2px solid black;
+  width: 350px;
+}
+
+.student-editor {
+  margin: 5px;
   width: 500px;
-  height: 650px;
-  overflowY: 'auto';
+  /* margin-top: 20px; */
 }
 
-/* .gridtile {
-  width: 200px;
-} */
-
-.Grades {
-
+.distribution {
+  border: 1px solid grey;
+  margin: 5px;
+  width: 250px;
 }
 
 .code {
