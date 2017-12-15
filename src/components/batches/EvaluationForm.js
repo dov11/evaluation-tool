@@ -106,6 +106,7 @@ class EvaluationForm extends PureComponent {
     return false
   }
   saveAndNext() {
+    if (this.validateComment()){
     let {
       comment,
       evaluationDate,
@@ -123,6 +124,9 @@ class EvaluationForm extends PureComponent {
     const batchId =this.props.batchId
     const studentId =this.props.studentId
     this.props.createEvaluation(batchId, studentId, evaluation, 'next')
+  }
+    return false
+
   }
 
   render() {
