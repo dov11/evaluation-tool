@@ -1,9 +1,7 @@
 import ApiClient from '../../api/client'
 import { loading } from '../loading'
 import { LOAD_ERROR } from '../loading'
-// import { push } from 'react-router-redux'
-
-// export const CREATED_STUDENT = 'CREATED_STUDENT'
+import { push } from 'react-router-redux'
 
 const api = new ApiClient()
 
@@ -14,8 +12,8 @@ export default (batchId, newStudent)=> {
     .then(res => {
         dispatch({type: 'UPDATED_BATCH', payload: res.body})
         dispatch({type: loading(false).type})
-        // const newBatchId = res.body._id
-        // dispatch(push(`batch/${newBatchId}`))
+        dispatch(push(`/`))
+        dispatch(push(`batches/${batchId}`))
       })
       .catch(err => dispatch({type: LOAD_ERROR, payload: err}))
   }
