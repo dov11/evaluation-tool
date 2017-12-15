@@ -13,6 +13,10 @@ import './ClassLobby.css'
 
 class ClassLobby extends PureComponent {
   componentWillMount() {
+    const { currentUser } = this.props
+    if ( currentUser == null ) {
+      this.props.push('/sign-in')
+    }
     this.props.fetchBatches()
   }
 
@@ -65,7 +69,7 @@ class ClassLobby extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches }) => ({ batches })
+const mapStateToProps = ({ batches, currentUser }) => ({ batches, currentUser })
 
 export default connect(mapStateToProps, {
 	fetchBatches,
