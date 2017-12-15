@@ -7,6 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton'
 import { fetchOneStudent } from '../../actions/batches/fetchStudent'
 import { push } from 'react-router-redux'
 import fetchBatches from '../../actions/batches/fetch'
+import FloatingActionButton from 'material-ui/FloatingActionButton'
+import BackIcon from 'material-ui/svg-icons/navigation/arrow-back'
 import './StudentEditor.css'
 
 
@@ -21,6 +23,12 @@ class StudentPatcher extends PureComponent {
     this.props.fetchBatches()
     this.props.fetchOneStudent(batchId, studentId)
   }
+
+  goBack = () => event => {
+    const batchId = this.props.match.params.batchId
+    this.props.push(`/batches/${batchId}/`)
+  }
+
   constructor(props) {
     super()
 
@@ -116,6 +124,7 @@ class StudentPatcher extends PureComponent {
         <div className="actions">
           <RaisedButton primary={true} onClick={this.saveStudent.bind(this)}>Save</RaisedButton>
         </div>
+        <FloatingActionButton mini={true} onClick={this.goBack()}><BackIcon/></FloatingActionButton>
       </div>
     )
   }
