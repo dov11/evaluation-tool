@@ -6,6 +6,7 @@
   display: 'flex';
   flexWrap: 'wrap';
   justifyContent: 'space-around';
+  margin: 5px;
 }
 .gridList {
   width: 500px;
@@ -17,8 +18,14 @@
   width: 200px;
 } */
 
-.Grades {
+.student-editor {
+  margin: 5px;
+  margin-top: 20px;
+}
 
+.distribution {
+  border: 1px solid grey;
+  margin: 5px;
 }
 
 .code {

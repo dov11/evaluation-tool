@@ -9,6 +9,7 @@ import GradeDistribution from '../components/batches/GradeDistribution'
 import StudentEditor from '../components/batches/StudentEditor'
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from 'material-ui/svg-icons/action/highlight-off'
+import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
 import FaceIcon from 'material-ui/svg-icons/action/face'
 import destroyStudent from '../actions/batches/destroyStudent'
 import selectStudent from '../functions/selectStudent'
@@ -39,9 +40,16 @@ class Batch extends PureComponent {
     const batchId = this.props.match.params.batchId
 		this.props.push(`/students/${batchId}/${studentId}`)
 	}
+
   deleteStudent = (studentId) => event => {
     this.props.destroyStudent(this.props.match.params.batchId, studentId)
   }
+
+  editStudent = studentId => event => {
+    const batchId = this.props.match.params.batchId
+    this.props.push(`/editstudent/${batchId}/${studentId}`)
+  }
+
   goToRandomStudent = () => event => {
     const students = this.props.batch.students
     const studentId = selectStudent(students)
@@ -56,18 +64,21 @@ class Batch extends PureComponent {
     const lastGrade=student.performanceCodes
       .sort((a,b)=> (new Date(b.evaluationDate).getTime())-(new Date(a.evaluationDate).getTime()))[0]
     return (
-      <GridTile
-        className="gridtile"
-        key={index}
-        onClick={this.goToStudent(student._id)}
-        title={student.firstName + " " + student.lastName}
-        subtitle={
-          <IconButton key={"del"+index}
+      <div key={"grid"+index}>
+        <IconButton key={"del"+index}
           onClick={this.deleteStudent(student._id)}
           >
           <DeleteIcon/>
-          </IconButton>
-        }
+        </IconButton>
+        <IconButton key={"edit"+index}
+          onClick={this.editStudent(student._id)}
+          >
+          <EditIcon/>
+        </IconButton>
+      <GridTile
+        key={index}
+        onClick={this.goToStudent(student._id)}
+        title={student.firstName + " " + student.lastName}
         titlePosition={'bottom'}
       >
       {(student.performanceCodes.length>0) &&
@@ -80,6 +91,7 @@ class Batch extends PureComponent {
       </div>}
       <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
       </GridTile>
+    </div>
     )
   }
 
@@ -90,7 +102,9 @@ class Batch extends PureComponent {
       <div>
         <div className="root">
           <Subheader>{'Batch #' + batch.batchNumber}</Subheader>
-          <GradeDistribution students={batch.students}/>
+          <div className="distribution">
+            <GradeDistribution students={batch.students}/>
+          </div>
           <GridList
             cellHeight={180}
             className="StudentGrid"
@@ -98,8 +112,10 @@ class Batch extends PureComponent {
               { batch.students.map(this.renderStudent) }
           </GridList>
         </div>
-        <StudentEditor batchId={batch._id}/>
-        <div>
+        <div className="student-editor">
+          <StudentEditor batchId={batch._id}/>
+        </div>
+        <div className="distribution">
           Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
         </div>
       </div>
