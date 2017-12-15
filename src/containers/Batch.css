@@ -7,20 +7,22 @@
   flexWrap: 'wrap';
   justifyContent: 'space-around';
   margin: 5px;
+  /* margin-bottom: 150px; */
 }
 .gridList {
-  width: 500px;
-  height: 650px;
+  width: 700px;
+  /* height: 650px; */
   overflowY: 'auto';
+  margin-bottom: auto;
 }
 
-/* .gridtile {
+.gridtile {
   width: 200px;
-} */
+}
 
 .student-editor {
   margin: 5px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 .distribution {

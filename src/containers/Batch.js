@@ -64,7 +64,11 @@ class Batch extends PureComponent {
     const lastGrade=student.performanceCodes
       .sort((a,b)=> (new Date(b.evaluationDate).getTime())-(new Date(a.evaluationDate).getTime()))[0]
     return (
-      <div key={"grid"+index}>
+      <GridTile
+        key={"grid"+index}
+        className="gridtile"
+        title={student.firstName + " " + student.lastName}
+        titlePosition={'bottom'}>
         <IconButton key={"del"+index}
           onClick={this.deleteStudent(student._id)}
           >
@@ -75,11 +79,9 @@ class Batch extends PureComponent {
           >
           <EditIcon/>
         </IconButton>
-      <GridTile
+      <div
         key={index}
         onClick={this.goToStudent(student._id)}
-        title={student.firstName + " " + student.lastName}
-        titlePosition={'bottom'}
       >
       {(student.performanceCodes.length>0) &&
       <div className="Grades">
@@ -90,8 +92,8 @@ class Batch extends PureComponent {
       <AverageGrade student={student}/>
       </div>}
       <img className="photo" src={student.linkToPhoto} alt={student.firstName + " Photo"}/>
-      </GridTile>
-    </div>
+      </div>
+    </GridTile>
     )
   }
 
@@ -106,17 +108,17 @@ class Batch extends PureComponent {
             <GradeDistribution students={batch.students}/>
           </div>
           <GridList
-            cellHeight={180}
-            className="StudentGrid"
+            cellHeight={400}
+            className="gridList"
             >
               { batch.students.map(this.renderStudent) }
+              <StudentEditor batchId={batch._id}/>
+              <div className="distribution">
+                Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
+            </div>
           </GridList>
         </div>
         <div className="student-editor">
-          <StudentEditor batchId={batch._id}/>
-        </div>
-        <div className="distribution">
-          Select Random Student: <IconButton onClick={this.goToRandomStudent()}><FaceIcon/></IconButton>
         </div>
       </div>
     )
