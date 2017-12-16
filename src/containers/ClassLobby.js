@@ -1,11 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-// import { disconnect } from '../actions/websocket'
 import fetchBatches from '../actions/batches/fetch'
-// import CreateGameButton from '../components/batches/CreateGameButton'
-// import Paper from 'material-ui/Paper'
 import {GridList, GridTile} from 'material-ui/GridList';
-// import {List, ListItem} from 'material-ui/List'
 import Subheader from 'material-ui/Subheader';
 import IconButton from 'material-ui/IconButton';
 import BatchEditor from '../components/batches/BatchEditor'
@@ -17,6 +13,10 @@ import './ClassLobby.css'
 
 class ClassLobby extends PureComponent {
   componentWillMount() {
+    const { currentUser } = this.props
+    if ( currentUser == null ) {
+      this.props.push('/sign-in')
+    }
     this.props.fetchBatches()
   }
 
@@ -69,7 +69,7 @@ class ClassLobby extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches }) => ({ batches })
+const mapStateToProps = ({ batches, currentUser }) => ({ batches, currentUser })
 
 export default connect(mapStateToProps, {
 	fetchBatches,

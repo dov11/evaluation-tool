@@ -22,7 +22,6 @@ class BatchEditor extends PureComponent {
   updateBatchNumber(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
-      // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
       batchNumber: this.refs.batchNumber.value

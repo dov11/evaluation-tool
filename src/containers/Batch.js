@@ -13,9 +13,6 @@ import EditIcon from 'material-ui/svg-icons/editor/mode-edit'
 import FaceIcon from 'material-ui/svg-icons/action/face'
 import destroyStudent from '../actions/batches/destroyStudent'
 import selectStudent from '../functions/selectStudent'
-// import Menu from 'material-ui/Menu'
-// import MenuItem from 'material-ui/MenuItem'
-// import Student from '../components/batches/student'
 import './Batch.css'
 
 
@@ -29,11 +26,6 @@ class Batch extends PureComponent {
     }
 
     this.props.fetchOneBatch(batchId)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // this.props.fetchGames()
-    // this.props.connectToSocket()
   }
 
   goToStudent = studentId => event => {

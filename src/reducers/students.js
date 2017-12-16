@@ -1,7 +1,3 @@
-// import {
-//   FETCH_ONE_STUDENT,
-// } from '../actions/batches/fetchStudent'
-
 export default (state=[], {type, payload} ={}) => {
   switch(type) {
 

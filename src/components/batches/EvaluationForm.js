@@ -36,6 +36,29 @@ class EvaluationForm extends PureComponent {
     }
   }
 
+
+  validateComment() {
+    const { comment, grades } = this.refs
+    console.log(grades.state.selected)
+
+    if (comment.getValue().length>0) {
+      this.setState({
+        commentError: null
+      })
+      return true
+    } else if (grades.state.selected==='Green') {
+      this.setState({
+        commentError: null
+      })
+      return true
+    }
+
+    this.setState({
+      commentError: 'Please provide comment'
+    })
+    return false
+}
+
   updateBatchNumber = (event, text) => {
     if (event.keyCode === 13) {
       event.preventDefault()
@@ -61,25 +84,29 @@ class EvaluationForm extends PureComponent {
 
 
   saveEvaluation() {
-    let {
-      comment,
-      evaluationDate,
-      colorCode
-    } = this.state
-    if (!colorCode) {colorCode='Green'}
-    if (!evaluationDate) {evaluationDate=defaultDate}
-    if (!comment) {comment=" "}
+    if (this.validateComment()){
+      let {
+        comment,
+        evaluationDate,
+        colorCode
+      } = this.state
+      if (!colorCode) {colorCode='Green'}
+      if (!evaluationDate) {evaluationDate=defaultDate}
+      if (!comment) {comment=" "}
 
-    const evaluation = {
-      comment,
-      evaluationDate,
-      colorCode
+      const evaluation = {
+        comment,
+        evaluationDate,
+        colorCode
+      }
+      const batchId =this.props.batchId
+      const studentId =this.props.studentId
+      this.props.createEvaluation(batchId, studentId, evaluation, null)
     }
-    const batchId =this.props.batchId
-    const studentId =this.props.studentId
-    this.props.createEvaluation(batchId, studentId, evaluation, null)
+    return false
   }
   saveAndNext() {
+    if (this.validateComment()){
     let {
       comment,
       evaluationDate,
@@ -98,6 +125,9 @@ class EvaluationForm extends PureComponent {
     const studentId =this.props.studentId
     this.props.createEvaluation(batchId, studentId, evaluation, 'next')
   }
+    return false
+
+  }
 
   render() {
     return (
@@ -105,8 +135,10 @@ class EvaluationForm extends PureComponent {
         <div className="flex-container">
         <div>
           <TextField
+            ref="comment"
             hintText="Your comment here"
             multiLine={true}
+            errorText={ this.state.commentError}
             rows={4}
             onChange={this.updateBatchNumber}
           />
@@ -118,6 +150,7 @@ class EvaluationForm extends PureComponent {
         </div>
         <div>
           <RadioButtonGroup
+            ref="grades"
             name="shipSpeed"
             defaultSelected="Green"
             onChange={this.setColorCode}
