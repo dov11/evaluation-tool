@@ -8,6 +8,7 @@ App allows users to select a student of a certain class, with a higher probabili
 
 API for the project can be found [here](https://github.com/dov11/game-API)  
 
+[![](https://github.com/dov11/evaluation-tool/blob/master/src/assets/Screenshot.png?raw=true)](https://github.com/dov11/evaluation-tool/blob/master/src/assets/Screenshot.png?raw=true)
 
 ## Database structure
 1. Performance Code
